@@ -5,6 +5,7 @@ import com.example.hw11.model.Task;
 import java.util.List;
 import java.util.UUID;
 
+// TaskRepository uses singleton approach
 public class TaskRepository implements IRepository {
 
     private static TaskRepository sInstance;

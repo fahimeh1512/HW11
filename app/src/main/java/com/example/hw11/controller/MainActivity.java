@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private TabLayout mDoingTab;
     private TabLayout mDoneTab;
 
+    // States for tasks
     private enum mStates { Todo, Doing, Done;
         private static int mValue;
 
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    // Intent needed for each activity
     public static Intent newIntent(Context context) {
         Intent intent = new Intent(context, MainActivity.class);
         return intent;
@@ -43,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         findViews();
-        //setListeners();
         initViews();
     }
 
@@ -60,28 +61,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initViews() {
+        // Sets adapter for view pager
         TasksAdapter tasksAdapter = new TasksAdapter(this);
         mViewPager.setAdapter(tasksAdapter);
     }
-    private void setListeners() {
-        /*mTodoTab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this, mStates.getValue(), Toast.LENGTH_SHORT).show();
-            }
-        });*/
-    }
 
-   /* public static mStates getState() {
-        *//*mStates state = new mStates(1);*//*
-        return mStates.values()[0];
-    }*/
-
+    // Adapter for view pager
     private class TasksAdapter extends FragmentStateAdapter {
         private int mNumOfTabs;
 
         public TasksAdapter(@NonNull FragmentActivity fragmentActivity) {
             super(fragmentActivity);
+            // Gets number of tabs from length of state array
             mNumOfTabs = mStates.values().length;
         }
 
