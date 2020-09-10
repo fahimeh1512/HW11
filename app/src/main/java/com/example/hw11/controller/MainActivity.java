@@ -10,9 +10,9 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import com.example.hw11.R;
+import com.example.hw11.model.State;
 import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
@@ -22,18 +22,6 @@ public class MainActivity extends AppCompatActivity {
     private TabLayout mDoingTab;
     private TabLayout mDoneTab;
 
-    // States for tasks
-    private enum mStates { Todo, Doing, Done;
-        private static int mValue;
-
-        public static void setValue(int value) {
-            mValue = value;
-        }
-
-        public static mStates getValue() {
-            return values()[mValue];
-        }
-    }
 
     // Intent needed for each activity
     public static Intent newIntent(Context context) {
@@ -73,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 int position = tab.getPosition();
-                mStates.setValue(position);
                 mViewPager.setCurrentItem(position);
             }
 
@@ -96,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
         public TasksAdapter(@NonNull FragmentActivity fragmentActivity) {
             super(fragmentActivity);
             // Gets number of tabs from length of state array
-            mNumOfTabs = mStates.values().length;
+            mNumOfTabs = State.values().length;
         }
 
 
@@ -105,7 +92,6 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public Fragment createFragment(int position) {
             TasksListFragment tasksListFragment = TasksListFragment.newInstance(position);
-            mStates state = mStates.getValue();
             return tasksListFragment;
         }
 

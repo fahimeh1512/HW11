@@ -8,7 +8,7 @@ public class Task {
     private String mTitle;
     private String mDescription;
     private Date mDate;
-    private int mState;
+    private State mState;
 
     public UUID getId() {
         return mId;
@@ -42,11 +42,11 @@ public class Task {
         mDate = date;
     }
 
-    public int getState() {
+    public State getState() {
         return mState;
     }
 
-    public void setState(int state) {
+    public void setState(State state) {
         mState = state;
     }
 }
