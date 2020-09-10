@@ -10,6 +10,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.example.hw11.R;
 import com.google.android.material.tabs.TabLayout;
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
         findViews();
         initViews();
+        setListeners();
     }
 
     private void findViews() {
@@ -66,6 +68,27 @@ public class MainActivity extends AppCompatActivity {
         mViewPager.setAdapter(tasksAdapter);
     }
 
+    private void setListeners() {
+        mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                int position = tab.getPosition();
+                mStates.setValue(position);
+                mViewPager.setCurrentItem(position);
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+    }
+
     // Adapter for view pager
     private class TasksAdapter extends FragmentStateAdapter {
         private int mNumOfTabs;
@@ -82,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public Fragment createFragment(int position) {
             TasksListFragment tasksListFragment = TasksListFragment.newInstance(position);
+            mStates state = mStates.getValue();
             return tasksListFragment;
         }
 
