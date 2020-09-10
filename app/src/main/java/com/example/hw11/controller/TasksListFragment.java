@@ -2,12 +2,15 @@ package com.example.hw11.controller;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.LinearLayout;
 
 import com.example.hw11.R;
 
@@ -21,6 +24,7 @@ public class TasksListFragment extends Fragment {
     private static final String ARG_POSITION = "fragment_position";
 
     private int mPosition;
+    private RecyclerView mRecyclerView;
 
     public TasksListFragment() {
         // Required empty public constructor
@@ -48,14 +52,24 @@ public class TasksListFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_tasks_list, container, false);
         findViews(view);
+        initViews();
 
         return view;
     }
 
 
     private void findViews(View view) {
-        TextView textView = view.findViewById(R.id.txt_view);
+        mRecyclerView = view.findViewById(R.id.recycler_view_tasks_list);
+    }
 
-        textView.setText(Integer.toString(mPosition));
+    private void initViews() {
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+    }
+
+    private class TaskHolder extends RecyclerView.ViewHolder {
+        public TaskHolder(@NonNull View itemView) {
+            super(itemView);
+        }
     }
 }
