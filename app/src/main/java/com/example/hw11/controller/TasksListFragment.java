@@ -17,16 +17,12 @@ import com.example.hw11.R;
 import com.example.hw11.model.Task;
 import com.example.hw11.repository.IRepository;
 import com.example.hw11.repository.TaskRepository;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Date;
 import java.util.List;
 import java.util.zip.Inflater;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link TasksListFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class TasksListFragment extends Fragment {
 
     private static final String ARG_POSITION = "fragment_position";
@@ -42,6 +38,7 @@ public class TasksListFragment extends Fragment {
     public static TasksListFragment newInstance(int position) {
         TasksListFragment fragment = new TasksListFragment();
         Bundle args = new Bundle();
+        // Sets current position as argument
         args.putInt(ARG_POSITION, position);
         fragment.setArguments(args);
         return fragment;
@@ -52,9 +49,11 @@ public class TasksListFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         if (getArguments() != null) {
+            // Gets fragment's current position
             mPosition = getArguments().getInt(ARG_POSITION);
         }
 
+        // Gets instance of repository
         mRepository = TaskRepository.getInstance();
     }
 
@@ -72,11 +71,13 @@ public class TasksListFragment extends Fragment {
 
     private void findViews(View view) {
         mRecyclerView = view.findViewById(R.id.recycler_view_tasks_list);
+
     }
 
     private void initViews() {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
+        TaskAdapter taskAdapter = new TaskAdapter(mRepository.getTasks());
+        mRecyclerView.setAdapter(taskAdapter);
     }
 
     private class TaskHolder extends RecyclerView.ViewHolder {
@@ -105,7 +106,7 @@ public class TasksListFragment extends Fragment {
         private void bindTask(Task task) {
             mTask = task;
             mTitle.setText(mTask.getTitle());
-            mDate.setText(mTask.getDate().toString());
+            //mDate.setText(mTask.getDate().toString());
         }
     }
 

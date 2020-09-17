@@ -10,14 +10,20 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.hw11.R;
 import com.example.hw11.model.State;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
+
+import static com.google.android.material.snackbar.Snackbar.*;
 
 public class MainActivity extends AppCompatActivity {
     private TabLayout mTabLayout;
     private ViewPager2 mViewPager;
+    private FloatingActionButton mFloatingActionButton;
     private TabLayout mTodoTab;
     private TabLayout mDoingTab;
     private TabLayout mDoneTab;
@@ -41,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
     private void findViews() {
         mTabLayout = findViewById(R.id.tab_layout);
         mViewPager = findViewById(R.id.view_pager);
+        mFloatingActionButton = findViewById(R.id.fab);
         TabLayout.Tab mTodoTab = mTabLayout.getTabAt(0);
         TabLayout.Tab mDoingTab = mTabLayout.getTabAt(1);
         TabLayout.Tab mDoneTab = mTabLayout.getTabAt(2);
@@ -72,6 +79,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
 
+            }
+        });
+
+        mFloatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Here's a Snackbar", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
             }
         });
     }

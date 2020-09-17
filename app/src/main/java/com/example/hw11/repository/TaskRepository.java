@@ -1,7 +1,9 @@
 package com.example.hw11.repository;
 
+import com.example.hw11.model.State;
 import com.example.hw11.model.Task;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -20,6 +22,15 @@ public class TaskRepository implements IRepository {
 
     // Constructor produces nothing!
     private TaskRepository() {
+        mTasks = new ArrayList<>();
+
+        Task task = new Task();
+        task.setTitle("tamrin");
+        task.setDescription("ersal");
+        //task.setDate(2020/12/03);
+        task.setState(State.Doing);
+
+        mTasks.add(task);
     }
 
     @Override
