@@ -22,12 +22,14 @@
         android:id="@+id/btn_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
         android:text="Button" />
 
     <Button
         android:id="@+id/btn_time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
         android:text="Button" />
 
     <CheckBox
