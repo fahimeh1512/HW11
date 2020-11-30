@@ -1,4 +1,4 @@
-package com.example.hw11.controller;
+package com.example.hw11.controller.fragment;
 
 import android.os.Bundle;
 
@@ -10,18 +10,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.hw11.R;
 import com.example.hw11.model.Task;
 import com.example.hw11.repository.IRepository;
 import com.example.hw11.repository.TaskRepository;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.Date;
 import java.util.List;
-import java.util.zip.Inflater;
 
 public class TasksListFragment extends Fragment {
 
@@ -93,7 +89,10 @@ public class TasksListFragment extends Fragment {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    TaskFragment taskFragment = TaskFragment.newInstance(
+                            mTask.getTitle(), mTask.getDescription(),
+                            mTask.getDate(), mTask.getState());
+                    taskFragment.show(getActivity().getSupportFragmentManager(), "task fragment");
                 }
             });
         }

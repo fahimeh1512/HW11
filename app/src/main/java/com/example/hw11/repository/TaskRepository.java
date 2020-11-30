@@ -54,6 +54,8 @@ public class TaskRepository implements IRepository {
         foundTask.setTitle(task.getTitle());
         foundTask.setDescription(task.getDescription());
         foundTask.setDate(task.getDate());
+        //???
+        foundTask.setState(task.getState());
     }
 
     @Override

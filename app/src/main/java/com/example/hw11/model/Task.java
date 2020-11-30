@@ -1,5 +1,7 @@
 package com.example.hw11.model;
 
+import com.example.hw11.utils.DateUtils;
+
 import java.util.Date;
 import java.util.UUID;
 
@@ -9,6 +11,12 @@ public class Task {
     private String mDescription;
     private Date mDate;
     private State mState;
+    private Boolean mEditable = false;
+
+    public Task() {
+        mId = UUID.randomUUID();
+        mDate = DateUtils.randomDate();
+    }
 
     public UUID getId() {
         return mId;
@@ -49,4 +57,5 @@ public class Task {
     public void setState(State state) {
         mState = state;
     }
+
 }

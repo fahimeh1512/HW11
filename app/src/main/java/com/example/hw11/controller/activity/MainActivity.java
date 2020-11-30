@@ -1,4 +1,4 @@
-package com.example.hw11.controller;
+package com.example.hw11.controller.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,12 +13,11 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.hw11.R;
+import com.example.hw11.controller.fragment.TasksListFragment;
 import com.example.hw11.model.State;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
-
-import static com.google.android.material.snackbar.Snackbar.*;
 
 public class MainActivity extends AppCompatActivity {
     private TabLayout mTabLayout;
